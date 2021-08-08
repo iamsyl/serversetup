@@ -1,4 +1,4 @@
 # serversetup
 
-# vundle, vim, colorscheme and tmux 
+vundle, vim, colorscheme and tmux 
 https://fideloper.com/mac-vim-tmux
