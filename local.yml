@@ -5,10 +5,18 @@
   become: true
 
   pre_tasks:
-    - name: update repositories
+    - name: update repositories for RedHat
       dnf:
         update_cache: yes
       changed_when: false
+      when: ansible_os_family == "RedHat"
+
+  pre_tasks:
+    - name: update repositories for Debian
+      apt:
+        update_cache: yes
+      changed_when: false
+      when: ansible_os_family == "Debian"
 
   tasks:
   - include: tasks/users.yml
