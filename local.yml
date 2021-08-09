@@ -1,6 +1,6 @@
 ---
 
-- hosts: localhost
+- hosts: all
   connection: local
   become: true
 
@@ -9,8 +9,6 @@
       dnf:
         update_cache: yes
       changed_when: false
-      args:
-        warn: false
 
   tasks:
   - include: tasks/users.yml
