@@ -2,7 +2,7 @@
   cron:
     name: ansible auto-provision
     user: ansible
-    minute: "*/5"
+    minute: "*/2"
     job: sudo ansible-pull -o -U https://github.com/iamsyl/serversetup.git
 
 - name: delete old ansible logs
@@ -10,5 +10,5 @@
     name: remove ansible logs every 2mins
     user: ansible
     minute: "*/2"
-    job:  sudo find ansible-serversetup.log -type f -mmin +5 -exec rm {} +
+    job:  sudo find /var/log/ansible-serversetup.log -type f -mmin +5 -exec rm {} +
 
