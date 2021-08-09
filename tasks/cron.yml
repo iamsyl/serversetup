@@ -4,3 +4,11 @@
     user: ansible
     minute: "*/10"
     job: ansible-pull -o -U https://github.com/iamsyl/serversetup.git
+
+- name: delete old ansible logs
+  cron:
+    name: remove ansible logs every 2mins
+    user: ansible
+    minute: "*/2"
+    job:  root find /var/log/ansible.log -type f -mmin +5 -exec rm {} +
+
