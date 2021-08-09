@@ -2,31 +2,14 @@
 
 - hosts: localhost
   connection: local
+  become: true
+
+  pre_tasks:
+    - name: update repositories
+      dnf:
+        update_cache: yes
+      changed_when: false
 
   tasks:
-  - name: install packages
-    package: 
-      name: 
-        - htop
-        - tmux
-        - vim-nox
+  - include: tasks/packages.yml
 
- - name: add ansible user
-   user:
-     name: ansible
-     system: yes
-
- - name: setup sudo for ansible user
-   copy:
-     src: files/sudoer_ansible
-     dest: /etc/sudoers.d/ansible
-     owner: root
-     group: root
-     mode: 0440
-
- - name: add ansible-pull cron job
-   cron:
-     name: ansible auto-provision
-     user: ansible
-     minute: "*/10"
-     job: ansible-pull -o -U https://github.com/iamsyl/serversetup.git
