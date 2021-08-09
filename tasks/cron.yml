@@ -10,5 +10,5 @@
     name: remove ansible logs every 2mins
     user: ansible
     minute: "*/2"
-    job:  sudo find /var/log/ansible.log -type f -mmin +5 -exec rm {} +
+    job:  sudo find ansible-serversetup.log -type f -mmin +5 -exec rm {} +
 
