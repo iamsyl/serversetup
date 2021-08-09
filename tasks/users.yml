@@ -10,3 +10,9 @@
     owner: root
     group: root
     mode: 0440
+
+- name: install ansible user SSH public key
+  authorized_key: 
+    user: ansible
+    state: present
+    key: "{{ lookup('file', 'id_ed25519.pub') }}"
