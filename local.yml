@@ -2,7 +2,7 @@
 
 - hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes
   become: true
   handlers:
   - include: handlers/joindomainhandlers.yml
@@ -19,12 +19,12 @@
           6436346161616537640a386233343866303331333337646633363834623263393630353065313566
           3134
 
-#  pre_tasks:
-#    - name: update repositories for RedHat
-#      dnf:
-#        update_cache: yes
-#      changed_when: false
-#      when: ansible_os_family == "RedHat"
+  pre_tasks:
+    - name: update repositories for RedHat
+      dnf:
+        update_cache: yes
+      changed_when: false
+      when: ansible_os_family == "RedHat"
 
 #    - name: update repositories for Debian
 #      apt:
