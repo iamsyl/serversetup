@@ -4,12 +4,33 @@
 #  changed_when: false
 #  ignore_errors: true
  
-- name: Check Domain Join Status
+- name: Check domain join status
   shell: id {{ad_join_user}}
   register: ad_status
   changed_when: false
   ignore_errors: true
 
-- name: AD Status
+- name: Report AD status
   debug:
     msg: "ad_status is {{ ad_status }}"
+
+- name: Join domain {{ ad_domain }}
+  expect:
+    command: realm join --user={{ ad_join_user }} {{ ad_domain }}"
+    responses:
+      Password for *: "{{ ad_join_pass }}"
+  when: ad_status.rc !=0
+
+- name: Allow domain user login without FQDN
+  lineinfile:
+    backup: yes
+    state: present
+    dest: /etc/sssd/sssd.conf
+    regexp: '^{{ item.search }}'
+    line: '{{ item.replace }}'
+  with_items:
+    - { search: 'use_fully_qualified_names', replace: 'use_fully_qualified_names = False' }
+    - { search: 'fallback_homedir', replace: 'fallback_homedir = /home/%u'}
+    - { search: 'access_provider', replace: 'access_provider = simple'}
+  notify: restart sssd
+  when: ad_status.rc !=0
