@@ -2,7 +2,7 @@
   shell: systemctl stop ntpd ; ntpdate {{ ad_server_ip }} && systemctl start ntpd
   register: timesync_result
   changed_when: false
- ignore_errors: true
+  ignore_errors: true
  
 - name: Check Domain Join Status
   shell: id {{ad_join_user}}
