@@ -4,6 +4,8 @@
   connection: local
   gather_facts: no
   become: true
+  handlers:
+  - include: handlers/joindomainhandlers.yml
   vars:
     ad_join_user: 'administrator'
     ad_server_ip: '192.168.7.4'
