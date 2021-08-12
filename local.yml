@@ -2,26 +2,29 @@
 
 - hosts: localhost
   connection: local
+  gather_facts: no
   become: true
-
-  pre_tasks:
-    - name: update repositories for RedHat
-      dnf:
-        update_cache: yes
-      changed_when: false
-      when: ansible_os_family == "RedHat"
-
-    - name: update repositories for Debian
-      apt:
-        update_cache: yes
-      changed_when: false
-      when: ansible_os_family == "Debian"
-  
   vars:
-  - include: vars/joindomainvars.yml
+    ad_join_user: 'administrator'
+    ad_server_ip: '192.168.7.4'
+    ad_server: 'dc.silas.local'
+    ad_domain: 'SILAS.LOCAL'
 
+#  pre_tasks:
+#    - name: update repositories for RedHat
+#      dnf:
+#        update_cache: yes
+#      changed_when: false
+#      when: ansible_os_family == "RedHat"
+
+#    - name: update repositories for Debian
+#      apt:
+#        update_cache: yes
+#      changed_when: false
+#      when: ansible_os_family == "Debian"
+  
   tasks:
-  - include: task/joindomain.yml 
-  - include: tasks/users.yml
+  - include: tasks/joindomain.yml 
+#  - include: tasks/users.yml
   - include: tasks/packages.yml
-  - include: tasks/cron.yml
+#  - include: tasks/cron.yml

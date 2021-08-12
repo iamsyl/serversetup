@@ -7,8 +7,8 @@
   shell: id {{ad_join_user}}
   register: ad_status
   changed_when: false
-  ignore_erros: true
+  ignore_errors: true
 
 - name: AD Status
   debug:
-    msg: "ad_status is {{ ad_status.rc }}"
+    msg: "ad_status is {{ ad_status }}"
