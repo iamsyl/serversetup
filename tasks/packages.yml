@@ -15,6 +15,5 @@
       - samba-common-tools
       - krb5-workstation
       - openldap-clients
-      - policycoreutils-python
       - python3-policycoreutils
   ignore_errors: yes
