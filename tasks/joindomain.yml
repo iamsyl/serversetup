@@ -16,7 +16,7 @@
 
 - name: Join domain {{ ad_domain }}
   expect:
-    command: /bin/bash -c "/usr/sbin/realm join  {{ ad_server_ip }} --user={{ ad_join_user }}"
+    command: "realm join  {{ ad_server_ip }} --user={{ ad_join_user }}"
     responses:
       Password for *: "{{ ad_join_pass }}"
   when: ad_status.rc !=0
