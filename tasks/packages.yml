@@ -7,12 +7,16 @@
       - lsof
       - bash-completion
       - sssd
+      - sssd-tools
       - realmd
       - oddjob
       - oddjob-mkhomedir
       - adcli
+      - libnss-sss
+      - libpam-sss
       - samba-common
       - samba-common-tools
+      - samba-common-bin
       - krb5-workstation
       - openldap-clients
       - python3-policycoreutils
