@@ -37,7 +37,7 @@
 
 - name: Updating sudoers for domain admin users
   lineinfile: 
-     path: /etc/sudoers.d/domainadmin
+     path: /etc/sudoers
      state: present
      regexp: '^%domain\\ admins'
      line: '%domain\ admins ALL=(ALL:ALL) ALL'
