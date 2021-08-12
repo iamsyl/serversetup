@@ -1,0 +1,6 @@
+---
+ad_user: 'administrator'
+ad_server_ip: '192.168.7.4'
+ad_server: 'dc.silas.local'
+ad_domain: 'SILAS.LOCAL'
+

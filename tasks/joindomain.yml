@@ -1,0 +1,14 @@
+- name: Sync time with AD server
+  shell: systemctl stop ntpd ; ntpdate {{ ad_server_ip }} && systemctl start ntpd
+  register: timesync_result
+  changed_when: false
+
+- name: Check Domain Join Status
+  shell: id {{ad_join_user}}
+  register: ad_status
+  changed_when: false
+  ignore_erros: true
+
+- name: AD Status
+  debug:
+    msg: "ad_status is {{ ad_status.rc }}"
