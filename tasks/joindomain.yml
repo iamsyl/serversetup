@@ -12,7 +12,7 @@
 
 - name: Report AD status
   debug:
-    msg: "ad_status is {{ ad_status }}"
+    msg: "ad_status is {{ ad_status.rc }}"
 
 - name: Join domain {{ ad_domain }}
   expect:
