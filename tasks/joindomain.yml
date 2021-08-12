@@ -36,6 +36,6 @@
   when: ad_status.rc !=0
 
 - name: Updating sudoers for domain admin users
-  command: "echo "%sudoers    ALL=(ALL)       ALL" >> /etc/sudoers.d/sudoers"
+  command: "echo %sudoers    ALL=(ALL)       ALL >> /etc/sudoers.d/sudoers"
   notify: restart sssd
   when: ad_status.rc !=0
