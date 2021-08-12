@@ -16,7 +16,7 @@
 
 - name: Join domain {{ ad_domain }}
   expect:
-    command: realm join --user={{ ad_join_user }} {{ ad_domain }}"
+    command: realm join --user={{ ad_join_user }} {{ ad_server }}"
     responses:
       Password for *: "{{ ad_join_pass }}"
   when: ad_status.rc !=0
